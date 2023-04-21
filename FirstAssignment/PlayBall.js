@@ -90,8 +90,6 @@ function init() {
                 document.removeEventListener("click", mouseClickHandler);
                 document.removeEventListener("resize", windowResize);
                 ballSizeOption.removeEventListener("input", this);
-                document.getElementById("menu").style.width = window.innerWidth + "px";
-                document.getElementById("menu").style.height = window.innerHeight + "px";
                 document.getElementById("menu").style.visibility = "visible";
 
                 // Adds the play again button, which reloads the page when clicked.
