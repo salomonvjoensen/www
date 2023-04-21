@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -16,3 +17,23 @@ hemmiligt.pub
 
 # Zip files
 *.zip
+=======
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# text files
+*.pdf
+*.doc
+*.docx
+*.txt
+
+# hemmiligt er vemmiligt
+hemmiligt
+hemmiligt.pub
+
+# zip files
+*.zip
+>>>>>>> www/master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,4 +49,56 @@
 
 <div id="quitDiv" onclick="quit();">Quit</div>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Click a blue ball</title>
+
+    <link rel="stylesheet" type="text/css" href="backSign.css">
+    <link rel="stylesheet" type="text/css" href="PlayBall.css">
+
+    <script type="text/javascript" src="PlayBall.js"></script>
+</head>
+
+<body>
+<img id="backSignImg" src="backSignBlue.svg" onclick="location.href='index.html'" alt="Back">
+<div id='centerDiv'>Click a blue ball.
+    &nbsp;<span id="amountOfBlueBalls"></span>&nbsp;balls left.
+    Clicked the screen&nbsp;<span id="amountOfClicks">0</span>&nbsp;times.
+</div>
+<div id="timeDiv">Time elapsed: <div id="timer"></div></div>
+
+<div id="menu">
+    <div id="start">
+        <div id="header" onclick="init();">
+            Play Ball!
+        </div>
+
+        <div id="options">
+            <label>
+                How many balls? (1-50)
+                <input id="amountOfBalls" type="number" min="1" max="50" value="10" step="1">
+                <br/>
+            </label>
+            <label>
+                Speed difficulty? (1-5)
+                <input id="speedOption" type="number" min="1" max="5" value="1">
+                <br />
+            </label>
+            <label>
+                Ball size: <span id="ballSizeShower">100</span>px diameter.
+                <input id="ballSizeOption" type="range" min="25" max="200" value="100">
+            </label>
+        </div>
+    </div>
+    <div id="showCircleDiv">
+        <div id="circle"></div>
+    </div>
+</div>
+
+<div id="quitDiv" onclick="quit();">Quit</div>
+</body>
+>>>>>>> www/master
 </html>

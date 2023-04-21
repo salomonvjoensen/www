@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #leftDiv {
     position: absolute;
     left: 10px;
@@ -34,4 +35,55 @@ details div {
     width: 1px;
     height: 1px;
     background-color: black;
+=======
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+}
+
+#leftDiv {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 100%;
+    width: 300px;
+}
+details div {
+    border: red solid 1px;
+    width: 180px;
+    padding: 10px;
+}
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+#circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: red solid 1px;
+    z-index: -1;
+}
+.dot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: black;
+>>>>>>> www/master
 }
