@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", function (){
     let circleElement = document.getElementById('circle');
     let circleSizeSpan = document.getElementById("circleSizeSpan");
     let circleAreaSpan = document.getElementById("circleAreaSpan");
+    let dotCounterPS = document.getElementById("dotCounterPS");
+    let collisionPS = document.getElementById("collisionPS");
+    let oldDotCounter = 0;
+    let oldCollision = 0;
+    let updatesPerSecond;
     // the offset correction for the container used for radius of the circle.
     const CONTAINER_HALF_SIZE = container.offsetWidth/2;
     let dotCounter = 0;  // dot counter.
@@ -24,7 +29,18 @@ document.addEventListener("DOMContentLoaded", function (){
 
     for (let i=0; i < circleArray.length; i++) {
         // For using in the grid for the circle.
-        circleArray[i] = new Array(circleArray.length).fill(false);
+        circleArray[i] = new Array(circleArray.length).fill(new Boolean(false));
+    }
+
+    // average of the counts and collisions per second, updates every second.
+    function perSecond() {
+        // Difference is recorded.
+        dotCounterPS.textContent = dotCounter - oldDotCounter
+        collisionPS.textContent = collision - oldCollision
+
+        // Value stored in 
+        oldDotCounter = dotCounter;
+        oldCollision = collision;
     }
 
     // Recursively call generateDot() function.
@@ -84,6 +100,9 @@ document.addEventListener("DOMContentLoaded", function (){
         clearButton.disabled = true;
         startButton.innerHTML = 'Continue';
         generateDots();
+            
+        // Updates dots and collisions 10 times per second
+        updatesPerSecond = setInterval(perSecond, 1000);
     });
 
     stopButton.addEventListener('click', () => {
@@ -91,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function (){
         startButton.disabled = false;
         stopButton.disabled = true;
         clearButton.disabled = false;
+
+        clearInterval(updatesPerSecond);
     });
 
     function updateCircleSize() {
@@ -101,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function (){
 
         updateCircle();
         updateDots();
+        perSecond();  // force updates, since the resized circle truncates dots/size.
     }
 
     circleSizeRange.addEventListener('input', updateCircleSize);
@@ -139,18 +161,23 @@ document.addEventListener("DOMContentLoaded", function (){
 
     // Clear all the dots.
     clearButton.addEventListener('click', () => {
-        container.innerHTML = '<div id="circle"></div>';
-        circleElement = document.getElementById('circle');
+        startButton.innerHTML = "Start";
+        container.innerHTML = '<div id="circle"></div>';  // Effectively removes all dots.
+        circleElement = document.getElementById('circle');  // Re-assign circleElement.
         updateCircle();
         dotCounter = 0;
+        collision = 0;
+        oldDotCounter = 0;
+        oldCollision = 0;
         dotCounterDiv.innerText = collisionCounter.innerText = '0';
-        startButton.innerHTML = "Start";
         probabilitySpan.textContent = "0.000";
+        dotCounterPS.innerText = "0";
+        collisionPS.innerText = "0";
 
         // re-clear circleArray.
         for (let i=0; i <circleArray.length; i++) {
             // For using in the grid for the circle.
-            circleArray[i] = new Array(800).fill(false);
+            circleArray[i] = new Array(800).fill(new Boolean(false));
         }
     });
 
