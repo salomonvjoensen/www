@@ -13,3 +13,6 @@
 # hemmiligt er vemmiligt
 hemmiligt
 hemmiligt.pub
+
+# Zip files
+*.zip
