@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150"
+   height="100"
+   viewBox="0 0 40.1875 26.791667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="backSignRed.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="2.8649832"
+     inkscape:cx="61.431425"
+     inkscape:cy="103.84005"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid119"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.53583334;stroke-opacity:1;stroke-dasharray:none"
+       d="M 13.395833,0 0,13.395833 13.395833,26.791666 V 20.09375 H 40.187499 V 6.6979168 H 13.395833 Z"
+       id="path175" />
+    <text
+       xml:space="preserve"
+       style="font-size:9.38325px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.133959;stroke-dasharray:none;stroke-opacity:1"
+       x="9.9435625"
+       y="16.364494"
+       id="text4430"
+       transform="scale(0.96908699,1.0318991)"><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.133959;stroke-dasharray:none"
+         x="9.9435625"
+         y="16.364494"
+         id="tspan4482">BACK</tspan></text>
+  </g>
+</svg>

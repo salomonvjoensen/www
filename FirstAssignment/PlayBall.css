@@ -1,0 +1,152 @@
+body {
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+#centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+#timeDiv {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    visibility: hidden;
+}
+#menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 200px;
+    margin: auto;
+    z-index: 3;
+}
+#start {
+    width: 50%;
+    height: 100%;
+    float: left;
+    background-color: blue;
+    border: red solid 2px;
+}
+#header {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 10px;
+    width: 88%;
+    height: 20%;
+    margin: auto;
+    background: green;
+    transition: background-color 0.25s linear;
+    border: white solid 2px;
+    font-size: 24px;
+    color: white;
+}
+#header:hover {
+    background: dodgerblue;
+}
+#options {
+    position: relative;
+    top: 20px;
+    color: white;
+    text-align: center;
+    height: 80%;
+}
+#showCircleDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 49%;
+    height: 100%;
+    left: 0;
+    right: 0;
+}
+#circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: blue;
+    transition: background-color 0.25s linear;
+}
+#circle:hover {
+    background-color: dodgerblue;
+}
+.ball {
+    font-size: 1px;
+    color: dodgerblue;
+    position: absolute;
+    background-color: blue;
+    transition: background-color 0.25s linear;
+}
+.ball:hover {
+    background-color: dodgerblue;
+    transition: background-color 0.25s linear;
+}
+.ball.green {
+    color: blue;
+    background: green;
+    transition: width 0.5s 1s,
+        height 0.5s 1s,
+        left 0.5s 1s,
+        top 0.5s 1s,
+        background 0.5s 1s ease-out,
+        color 0.5s 1s,
+        font-size 0.5s 1s;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.ball.red {
+    width: 0;
+    height: 0;
+    background: red;
+    transition: width 1s 0.5s, height 1s 0.5s, background 0.5s;
+}
+.endScreenStyle {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    background-color: blue;
+    margin: 10px;
+    border: red solid 2px;
+    width: 180px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.endDiv:hover {
+    background-color: green;
+}
+.returnDiv:hover {
+    background-color: red;
+}
+#quitDiv {
+    cursor: pointer;
+    visibility: hidden;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    border: red solid 2px;
+    padding: 10px;
+    color: white;
+    background-color: blue;
+    transition: background-color 0.5s linear;
+}
+#quitDiv:hover {
+    background-color: red;
+}

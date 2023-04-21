@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dots & Collisions.</title>
+
+  <link rel="stylesheet" type="text/css" href="backSign.css">
+  <link rel="stylesheet" type="text/css" href="CircleDots.css">
+
+  <script type="text/javascript" src="CircleDots.js">
+  </script>
+</head>
+<body>
+<div id="leftDiv">
+<img id="backSignImg" src="backSignBlue.svg" onclick="location.href='index.html'"  alt="Back">
+
+<p>
+  <button id="start">Start</button>
+  <button id="stop" disabled="disabled">Stop</button>
+  <button id="clear">Clear</button>
+</p>
+<p>
+  <label>&nbsp;Update cycle of dots:&nbsp;
+    <input id="updateCycle" type="number" min="1" max="1000" value="1" step="1">
+  </label>
+</p>
+<p>
+<label>Circle radius:&nbsp;<span id="circleSizeSpan">0100</span>&nbsp;px.
+  <input id="circleSizeRange" type="range" min="0" max="400" value="100" step="1">
+</label>
+</p>
+<p>
+  &nbsp;Area of circle:&nbsp;<span id="circleAreaSpan">31.416</span>&nbsp;px.
+</p>
+
+<p>
+  <span id="dotCounter">0</span>&nbsp;dots and
+  <span id="collisions">0</span>&nbsp;collisions.<br/>
+  Probability for collision:&nbsp;<span id="probabilitySpan">0.000</span>%
+</p>
+
+<details>
+  <summary>
+    About.
+  </summary>
+  <div>
+    Randomly places 1 pixel divs within
+    the red circle. You can change the radius
+    of the circle between 0 and 400 pixels.
+    Update cycle is how many dots are added per cycle.
+    At most 1000 dots can be added per cycle.
+    Probability for collision is dots/area.
+  </div>
+</details>
+</div>
+
+  <div id="container">
+    <div id="circle"></div>
+  </div>
+
+</body>
+</html>
