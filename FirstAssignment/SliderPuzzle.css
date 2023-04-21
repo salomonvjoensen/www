@@ -1,0 +1,86 @@
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.hideElement {
+    position: relative;
+    visibility: hidden;
+}
+#timeDiv {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    visibility: hidden;
+}
+#timeSpan {
+
+}
+#parentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+}
+#puzzleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#winScreen {
+    visibility: hidden;
+    text-align: center;
+    top: -50px;
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    animation: textAnimation ease 2s 0s infinite;
+    z-index: 2;
+}
+@keyframes textAnimation {
+    0% {font-size: 24px;}
+    50% {font-size: 48px;}
+    100% {font-size: 24px;}
+}
+.tile {
+    color: white;
+    text-shadow:
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px 1px 0 black,
+            1px 1px 0 black;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    float: left;
+    border: black solid 1px;
+    transition: left 0.5s, top 0.5s;
+}
+.last-tile {
+    font-size: 18px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    border-color: transparent;
+}
+.no-click {
+    pointer-events: none;
+    opacity: 0.5;
+}

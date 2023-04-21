@@ -1,0 +1,11 @@
+#backSignImg {
+    position: relative;
+    left: 25px;
+    transition: left 0.5s;
+    cursor: pointer;
+}
+
+#backSignImg:hover {
+    content: url("backSignRed.svg");
+    left: 0px;
+}
