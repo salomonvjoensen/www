@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // The initial area of the circle for a circle of 100 pixel radius.
     let circleArea = Math.floor(radius * radius * Math.PI);
     let probabilitySpan = document.getElementById("probabilitySpan");
+    let probabilityDotSpan = document.getElementById("probabilityDotSpan");
     let updateCycle = document.getElementById("updateCycle");
     let dots = [];  // array that will store all the dots.
     let circleArray = new Array(CONTAINER_HALF_SIZE*2); // Array for the size of the container div.
@@ -76,10 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
             dotCounterDiv.textContent = (++dotCounter).toString();
 
             if (dotCounter/circleArea < 1) {
-                probabilitySpan.textContent = (100 * (dotCounter) / circleArea).toFixed(3).toString();
+                let probs = (100 * (dotCounter) / circleArea).toFixed(3);
+                let probsDot = (100 - probs).toFixed(3);
+                probabilitySpan.textContent = probs.toString();
+                probabilityDotSpan.textContent = probsDot.toString();
             } else {
-                // can't have more than 100% probability for collision ...
                 probabilitySpan.textContent = "100";
+                probabilityDotSpan.textContent = "0";
             }
 
             // Create a dot element and set its left and top positions.
@@ -153,9 +157,13 @@ document.addEventListener("DOMContentLoaded", function () {
         dotCounterDiv.innerText = dotCounter.toString();
 
         if (dotCounter/circleArea < 1) {
-            probabilitySpan.textContent = (100 * (dotCounter) / circleArea).toFixed(3).toString();
+            let probs = (100 * (dotCounter) / circleArea).toFixed(3);
+            let probsDot = (100 - probs).toFixed(3);
+            probabilitySpan.textContent = probs.toString();
+            probabilityDotSpan.textContent = probsDot.toString();
         } else {
             probabilitySpan.textContent = "100";
+            probabilityDotSpan.textContent = "0";
         }
     }
 
@@ -171,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
         oldCollision = 0;
         dotCounterDiv.innerText = collisionCounter.innerText = '0';
         probabilitySpan.textContent = "0.000";
+        probabilityDotSpan.textContent = "100.000"
         dotCounterPS.innerText = "0";
         collisionPS.innerText = "0";
 
