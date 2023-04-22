@@ -16,3 +16,6 @@ hemmiligt.pub
 
 # Zip files
 *.zip
+
+# critical dev .php files
+test.php
