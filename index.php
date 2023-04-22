@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>A static web page</title>
+    <title>iFrame</title>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
@@ -11,9 +11,7 @@
     <p>
         <a href="FirstAssignment/index.html">First Assignment.</a>
     </p>
-    <p>
-        More coming Soon!
-    </p>
+    <p><?php echo "More coming soon!";?></p>
 </div>
 
 </body>
