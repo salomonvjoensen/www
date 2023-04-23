@@ -19,3 +19,4 @@ hemmiligt.pub
 
 # critical dev .php files
 test.php
+*.php
