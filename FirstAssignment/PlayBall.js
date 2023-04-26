@@ -4,7 +4,11 @@ function init() {
     let isRunning = true;
     let tries = 0;
     let mouseClicks = 0;
-    let amountOfBalls = startAmountOfBalls = document.getElementById("amountOfBalls").value;
+    let amountOfBalls = document.getElementById("amountOfBalls");
+    let ballsLeft = document.getElementById("amountOfBlueBalls");
+    let startAmountOfBalls = amountOfBalls.value;
+    ballsLeft.innerHTML = amountOfBalls.value;
+
     let speed = document.getElementById("speedOption").value;
     let ballSize = document.getElementById("ballSizeOption").value;
     let circleWindowPosition = document.getElementById("circle").getBoundingClientRect();
@@ -23,10 +27,6 @@ function init() {
     document.getElementById("start").remove();
     document.getElementById("showCircleDiv").remove();
     document.getElementById("menu").style.visibility = "hidden";
-
-
-
-    document.getElementById("amountOfBlueBalls").innerHTML = amountOfBalls.toString();
 
     startTimer();
 
@@ -71,7 +71,7 @@ function init() {
                     "<h1 style='z-index: 100'>It took "
                     + tries + " red balls out of " + startAmountOfBalls + " blue balls, and "
                     + document.getElementById("timer").innerHTML + "econds.<br />"
-                    + "You clicked the screen "
+                    + "You clicked the screen, at " + speed + " speed.";
                     + mouseClicks + " times.</h1>";
                 this.innerHTML = "You<br/>win!";
                 this.style.setProperty("font-size",ballSize/2 + "px");
@@ -118,8 +118,8 @@ function init() {
                     this.style.width = "0"
                     this.style.height = "0";
                     tries++;
-                    amountOfBalls--;
-                    document.getElementById("amountOfBlueBalls").innerHTML = amountOfBalls.toString();
+                    amountOfBalls.value--;
+                    ballsLeft.innerHTML = amountOfBalls.value;
                     setTimeout(() => {
                         this.removeEventListener("click", clickBalls);
                         this.remove();
@@ -139,7 +139,7 @@ function init() {
 
     // Create div elements based on amountOfBalls.
     let balls = [];
-    for (let i = 0; i < amountOfBalls; i++) {
+    for (let i = 0; i < amountOfBalls.value; i++) {
         let ball = document.createElement('div');
         ball.classList.add('ball');
         ball.style.width = ballSize + "px";
