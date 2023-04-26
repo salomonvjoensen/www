@@ -10,25 +10,42 @@
 <script type="text/javascript" src="SliderPuzzle.js"></script>
 </head>
 <body>
-<img id="backSignImg" src="backSignBlue.svg" onclick="location.href='index.html'" alt="Back">
+<img id="backSignImg" src="backSignBlue.svg"
+    onclick="location.href='index.html'" alt="Back">
 
 <div id="parentContainer">
     <div id="winScreen">You win!</div>
     <div id="puzzleContainer">
         <label>Puzzle size?
-            <input id="puzzleSizeAsk" type="number" min="3" max="5" value="4" step="1">
-            <button onclick="init(document.getElementById('puzzleSizeAsk').value);
-                this.parentNode.remove();">Play</button>
+            <input id="puzzleSizeAsk"
+                type="number"
+                min="3" max="5"
+                value="4" step="1">
+            <button
+                onclick="init(document.getElementById(
+                'puzzleSizeAsk').value);
+                this.parentNode.remove();">Play
+            </button>
         </label>
     </div>
     <div id="reShuffle" class="hideElement">
-        <button id="reShuffleButton" onclick="shuffleTiles(false);">Slow Shuffle</button>
-        <button id="fastReShuffleButton" onclick="shuffleTiles(true);">Fast Shuffle</button>
+        <button id="reShuffleButton"
+            onclick="shuffleTiles(false);">
+            Slow Shuffle
+        </button>
+        <button id="fastReShuffleButton"
+            onclick="shuffleTiles(true);">
+            Fast Shuffle
+        </button>
     </div>
     
-    <button id="playAgain" class="hideElement" onclick="location.reload();">Return</button>
+    <button id="playAgain" class="hideElement"
+        onclick="location.reload();">Return
+    </button>
 
-    <div id="movesContainer" class="hideElement"><span id="moves">0</span>&nbsp;moves.</div>
+    <div id="movesContainer" class="hideElement">
+        <span id="moves">0</span>&nbsp;moves.
+    </div>
     <div id="shuffleCounterContainer" class="hideElement">
         <span id="shuffleCounterSpan">0</span>&nbsp;shuffles.
     </div>

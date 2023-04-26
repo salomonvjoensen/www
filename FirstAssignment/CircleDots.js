@@ -1,39 +1,62 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let dotCounterDiv = document.getElementById("dotCounter");
-    let container = document.getElementById("container");
-    let circleSizeRange = document.getElementById('circleSizeRange');
-    let circleElement = document.getElementById('circle');
-    let circleSizeSpan = document.getElementById("circleSizeSpan");
-    let circleAreaSpan = document.getElementById("circleAreaSpan");
-    let dotCounterPS = document.getElementById("dotCounterPS");
-    let collisionPS = document.getElementById("collisionPS");
+    let dotCounterDiv
+        = document.getElementById("dotCounter");
+    let container
+        = document.getElementById("container");
+    let circleSizeRange
+        = document.getElementById('circleSizeRange');
+    let circleElement
+        = document.getElementById('circle');
+    let circleSizeSpan
+        = document.getElementById("circleSizeSpan");
+    let circleAreaSpan
+        = document.getElementById("circleAreaSpan");
+    let dotCounterPS
+        = document.getElementById("dotCounterPS");
+    let collisionPS
+        = document.getElementById("collisionPS");
     let oldDotCounter = 0;
     let oldCollision = 0;
     let updatesPerSecond;
+
     // the offset correction for the container used for radius of the circle.
     const CONTAINER_HALF_SIZE = container.offsetWidth/2;
     let dotCounter = 0;  // dot counter.
     let collision = 0;
-    let collisionCounter = document.getElementById("collisions");
-    let radius = parseInt(circleSizeRange.value); // initial radius of 100
+    let collisionCounter
+        = document.getElementById("collisions");
+    // initial radius of 100
+    let radius
+        = parseInt(circleSizeRange.value);
     let timeoutId;
-    let startButton = document.getElementById('start');
-    let stopButton = document.getElementById('stop');
-    let clearButton = document.getElementById('clear');
-    // The initial area of the circle for a circle of 100 pixel radius.
-    let circleArea = Math.floor(radius * radius * Math.PI);
-    let probabilitySpan = document.getElementById("probabilitySpan");
-    let probabilityDotSpan = document.getElementById("probabilityDotSpan");
-    let updateCycle = document.getElementById("updateCycle");
+    let startButton
+        = document.getElementById('start');
+    let stopButton
+        = document.getElementById('stop');
+    let clearButton
+        = document.getElementById('clear');
+    // The initial area of the circle
+    // for a circle of 100 pixel radius.
+    let circleArea = Math.floor(
+        radius * radius * Math.PI);
+    let probabilitySpan
+        = document.getElementById("probabilitySpan");
+    let probabilityDotSpan
+        = document.getElementById("probabilityDotSpan");
+    let updateCycle
+        = document.getElementById("updateCycle");
     let dots = [];  // array that will store all the dots.
-    let circleArray = new Array(CONTAINER_HALF_SIZE*2); // Array for the size of the container div.
+    // Array for the size of the container div.
+    let circleArray = new Array(CONTAINER_HALF_SIZE*2);
 
     for (let i=0; i < circleArray.length; i++) {
         // For using in the grid for the circle.
-        circleArray[i] = new Array(circleArray.length).fill(new Boolean(false));
+        circleArray[i] = new Array(circleArray.length)
+            .fill(new Boolean(false));
     }
 
-    // average of the counts and collisions per second, updates every second.
+    // average of the counts and collisions
+    // per second, updates every second.
     function perSecond() {
         // Difference is recorded.
         dotCounterPS.textContent = dotCounter - oldDotCounter
@@ -58,9 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return (x * x + y * y) <= (radius * radius);
     }
 
-    // Generates dot inside the array, based on radius of the circle.
+    // Generates dot inside the array,
+    // based on radius of the circle.
     function generateDot() {
-        // Generate random left and top positions within the circle.
+        // Generate random left and
+        // top positions within the circle.
         let angle = Math.random() * Math.PI * 2;
         let x = Math.cos(angle) * radius * Math.random();
         let y = Math.sin(angle) * radius * Math.random();
@@ -70,17 +95,22 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check for collision
         if (circleArray[left][top] === true) {
             // Collision detected
-            collisionCounter.textContent = (++collision).toString();
+            collisionCounter.textContent
+                = (++collision).toString();
         } else {
             // Update circleArray
             circleArray[left][top] = true;
-            dotCounterDiv.textContent = (++dotCounter).toString();
+            dotCounterDiv.textContent
+                = (++dotCounter).toString();
 
             if (dotCounter/circleArea < 1) {
-                let probs = (100 * (dotCounter) / circleArea).toFixed(3);
+                let probs = (100 * (dotCounter)
+                    / circleArea).toFixed(3);
                 let probsDot = (100 - probs).toFixed(3);
-                probabilitySpan.textContent = probs.toString();
-                probabilityDotSpan.textContent = probsDot.toString();
+                probabilitySpan.textContent
+                    = probs.toString();
+                probabilityDotSpan.textContent
+                    = probsDot.toString();
             } else {
                 probabilitySpan.textContent = "100";
                 probabilityDotSpan.textContent = "0";
@@ -89,8 +119,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // Create a dot element and set its left and top positions.
             let dot = document.createElement("div");
             dot.classList.add("dot");
-            dot.style.left = left + CONTAINER_HALF_SIZE - 1 - radius + "px"; // centering correction.
-            dot.style.top = top + CONTAINER_HALF_SIZE - 1 - radius + "px";
+
+            // centering correction.
+            dot.style.left
+                = left + CONTAINER_HALF_SIZE - 1
+                - radius + "px";
+            dot.style.top
+                = top + CONTAINER_HALF_SIZE - 1
+                    - radius + "px";
 
             // Append the dot to the circle element
             circleElement.appendChild(dot);
@@ -120,20 +156,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCircleSize() {
         radius = circleSizeRange.value;
-        circleSizeSpan.textContent = circleSizeRange.value.padStart(4, "0");
-        circleArea = Math.ceil(Math.PI * Math.pow(radius, 2));
-        circleAreaSpan.textContent = circleArea.toLocaleString("da-DK");
+        circleSizeSpan
+            .textContent
+                = circleSizeRange
+                .value.padStart(4, "0");
+        circleArea
+            = Math.ceil(Math.PI * Math
+                .pow(radius, 2));
+        circleAreaSpan.textContent
+            = circleArea.toLocaleString("da-DK");
 
         updateCircle();
         updateDots();
-        perSecond();  // force updates, since the resized circle truncates dots/size.
+        // force updates, since the
+        // resized circle truncates dots/size.
+        perSecond();
     }
 
-    circleSizeRange.addEventListener('input', updateCircleSize);
+    circleSizeRange
+        .addEventListener('input',
+        updateCircleSize);
 
     // Updates the dots.
     function updateDots() {
-        // Iterate through all the dots to see if they're inside the circle.
+        // Iterate through all the dots
+        // to see if they're inside the circle.
         dots = dots.filter(dot => {
             let left = parseInt(dot.style.left);
             let top = parseInt(dot.style.top);
@@ -151,16 +198,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Re-count dots
-        dotCounter = document.getElementsByClassName("dot").length;
+        dotCounter
+            = document
+                .getElementsByClassName("dot")
+                .length;
 
         // Update the new dot amount.
-        dotCounterDiv.innerText = dotCounter.toString();
+        dotCounterDiv.innerText
+            = dotCounter.toString();
 
         if (dotCounter/circleArea < 1) {
-            let probs = (100 * (dotCounter) / circleArea).toFixed(3);
-            let probsDot = (100 - probs).toFixed(3);
-            probabilitySpan.textContent = probs.toString();
-            probabilityDotSpan.textContent = probsDot.toString();
+            let probs = (100 * (dotCounter)
+                / circleArea).toFixed(3);
+            let probsDot
+                = (100 - probs).toFixed(3);
+            probabilitySpan.textContent
+                = probs.toString();
+            probabilityDotSpan.textContent
+                = probsDot.toString();
         } else {
             probabilitySpan.textContent = "100";
             probabilityDotSpan.textContent = "0";
@@ -170,14 +225,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Clear all the dots.
     clearButton.addEventListener('click', () => {
         startButton.innerHTML = "Start";
-        container.innerHTML = '<div id="circle"></div>';  // Effectively removes all dots.
-        circleElement = document.getElementById('circle');  // Re-assign circleElement.
+
+        // Effectively removes all dots.
+        container.innerHTML = '<div id="circle"></div>';
+
+        // Re-assign circleElement.
+        circleElement = document.getElementById('circle');
         updateCircle();
         dotCounter = 0;
         collision = 0;
         oldDotCounter = 0;
         oldCollision = 0;
-        dotCounterDiv.innerText = collisionCounter.innerText = '0';
+        dotCounterDiv.innerText
+            = collisionCounter.innerText = '0';
         probabilitySpan.textContent = "0.000";
         probabilityDotSpan.textContent = "100.000"
         dotCounterPS.innerText = "0";
@@ -186,15 +246,29 @@ document.addEventListener("DOMContentLoaded", function () {
         // re-clear circleArray.
         for (let i=0; i <circleArray.length; i++) {
             // For using in the grid for the circle.
-            circleArray[i] = new Array(800).fill(new Boolean(false));
+            circleArray[i]
+                = new Array(800)
+                .fill(new Boolean(false));
         }
     });
 
-    // Function used in the updateCircleSize() function and circleSizeRange input event listener.
+    // Function used in the updateCircleSize()
+    // function and circleSizeRange
+    // input event listener.
     function updateCircle() {
-        circleElement.style.width = circleElement.style.height = circleSizeRange.value * 2 + 'px';
-        circleElement.style.borderRadius = circleSizeRange.value + 'px';
-        circleElement.style.left = (container.offsetWidth - circleSizeRange.value) + 'px';
-        circleElement.style.top = (container.offsetHeight - circleSizeRange.value) + 'px';
+        circleElement
+            .style.width
+                = circleElement
+                .style.height
+                = circleSizeRange.value * 2 + 'px';
+
+        circleElement.style.borderRadius
+            = circleSizeRange.value + 'px';
+        circleElement.style.left
+            = (container.offsetWidth
+                - circleSizeRange.value) + 'px';
+        circleElement.style.top
+            = (container.offsetHeight
+                - circleSizeRange.value) + 'px';
     }
 });

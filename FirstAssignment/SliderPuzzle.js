@@ -9,9 +9,15 @@ let emptyTileIndex;
 let emptyTileRow;
 let emptyTileCol;
 let puzzle = [];  // Tiles are stored here.
-let isAnimating = false;  // To check if the animation still runs in the isPuzzleSolved() function.
+
+// To check if the animation still runs
+// in the isPuzzleSolved() function.
+let isAnimating = false;
 let isSolved = false;
-let firstShuffle = true;  // Boolean flag to check if the puzzle has been shuffled at least once.
+
+// Boolean flag to check if the puzzle
+// has been shuffled at least once.
+let firstShuffle = true;
 let reShuffle;
 let reShuffleButton;
 let fastReShuffleButton;
@@ -29,40 +35,57 @@ let timeSpan;
 function init(puzzleSizeAsk) {
     // DOM and variable declarations.
     puzzleSize = parseInt(puzzleSizeAsk); // cast to an int.
-    parentContainer = document.getElementById("parentContainer");
-    puzzleContainer = document.getElementById("puzzleContainer");
-    puzzleContainer.style.width = (puzzleSize * TILE_SIZE) + "px";
-    puzzleContainer.style.height = (puzzleSize * TILE_SIZE) + "px";
+    parentContainer
+        = document.getElementById("parentContainer");
+    puzzleContainer
+        = document.getElementById("puzzleContainer");
+    puzzleContainer.style.width
+        = (puzzleSize * TILE_SIZE) + "px";
+    puzzleContainer.style.height
+        = (puzzleSize * TILE_SIZE) + "px";
     container = document.querySelector('#puzzleContainer');
     reShuffle = document.getElementById("reShuffle");
-    reShuffleButton = document.getElementById("reShuffleButton");
-    fastReShuffleButton = document.getElementById("fastReShuffleButton");
+    reShuffleButton
+        = document.getElementById("reShuffleButton");
+    fastReShuffleButton
+        = document.getElementById("fastReShuffleButton");
     movesSpan = document.getElementById("moves");
-    movesContainer = document.getElementById("movesContainer");
-    shuffleCounterContainer = document.getElementById("shuffleCounterContainer");
-    shuffleCounterSpan = document.getElementById("shuffleCounterSpan");
-    document.getElementById("playAgain").style.visibility = "visible";
+    movesContainer
+        = document.getElementById("movesContainer");
+    shuffleCounterContainer
+        = document.getElementById("shuffleCounterContainer");
+    shuffleCounterSpan
+        = document.getElementById("shuffleCounterSpan");
+    document.getElementById("playAgain").style.visibility
+        = "visible";
     timeSpan = document.createElement("span");
 
-    // make the shuffle buttons visible and align them and playAgain accordingly.
+    // make the shuffle buttons visible
+    // and align them and playAgain accordingly.
     parentContainer.style.width = (puzzleSize * TILE_SIZE) + "px";
     parentContainer.style.height = (puzzleSize * TILE_SIZE) + "px";
     reShuffle.style.visibility = "visible";
     reShuffle.style.top = (puzzleSize * TILE_SIZE)/2 + 50 + "px";
-    document.getElementById("playAgain").style.top = (puzzleSize * TILE_SIZE)/2 + 55 + "px";
-    movesContainer.style.top = (puzzleSize * TILE_SIZE)/2 + 70 + "px";
+    document.getElementById("playAgain").style.top
+        = (puzzleSize * TILE_SIZE)/2 + 55 + "px";
+    movesContainer.style.top
+        = (puzzleSize * TILE_SIZE)/2 + 70 + "px";
     movesContainer.style.visibility = "visible";
-    shuffleCounterContainer.style.top = (puzzleSize * TILE_SIZE)/2 + 80 + "px";
+    shuffleCounterContainer.style.top
+        = (puzzleSize * TILE_SIZE)/2 + 80 + "px";
     shuffleCounterContainer.style.visibility = "visible";
 
+    // Generate the puzzle tiles.
     for (let row = 0; row < puzzleSize; row++) {
         for (let col = 0; col < puzzleSize; col++) {
             const tile = document.createElement('div');
             tile.classList.add('tile', 'no-click');
-            tile.style.backgroundPosition = `-${col * TILE_SIZE}px -${row * TILE_SIZE}px`;
+            tile.style.backgroundPosition
+                = `-${col * TILE_SIZE}px -${row * TILE_SIZE}px`;
             tile.style.left = `${col * TILE_SIZE}px`;
             tile.style.top = `${row * TILE_SIZE}px`;
-            tile.innerHTML = tile_counter.toString();  // assign tile number.
+            // assign tile numbers.
+            tile.innerHTML = tile_counter.toString();
             tile_counter++;
 
             if (puzzleSize === 3) {
@@ -105,12 +128,16 @@ function init(puzzleSizeAsk) {
             // Calculate row and column of clicked tile and empty space
             const tileRow = parseInt(tile.style.top) / TILE_SIZE;
             const tileCol = parseInt(tile.style.left) / TILE_SIZE;
-            const emptyTileRow = parseInt(tiles[emptyTileIndex].style.top) / TILE_SIZE;
-            const emptyTileCol = parseInt(tiles[emptyTileIndex].style.left) / TILE_SIZE;
+            const emptyTileRow
+                = parseInt(tiles[emptyTileIndex].style.top) / TILE_SIZE;
+            const emptyTileCol
+                = parseInt(tiles[emptyTileIndex].style.left) / TILE_SIZE;
 
             // Check if clicked tile is adjacent to empty space
-            if ((Math.abs(tileRow - emptyTileRow) === 1 && tileCol === emptyTileCol) ||
-                (Math.abs(tileCol - emptyTileCol) === 1 && tileRow === emptyTileRow)) {
+            if ((Math.abs(tileRow - emptyTileRow) === 1
+                && tileCol === emptyTileCol) ||
+                (Math.abs(tileCol - emptyTileCol) === 1
+                && tileRow === emptyTileRow)) {
                 // amount of moves is updated and written to div.
                 moves++;
                 movesSpan.textContent = moves;
@@ -130,33 +157,43 @@ function init(puzzleSizeAsk) {
                     isAnimating = false;
 
                     if (isPuzzleSolved() && !isSolved) {
-                        isSolved = true; // To make sure the end puzzle is only fired once.
+                        // To make sure the end puzzle is only fired once.
+                        isSolved = true;
                         pauseTimer();  // Stops the timer.
 
-                        // Remove the tiles, except the last one, this also unloads the event handlers.
+                        // Remove the tiles, except the last one,
+                        // this also unloads the event handlers.
                         for (let i=0; i < tiles.length - 1; i++) {
                             tiles[i].remove();
                         }
-                        tiles[emptyTileIndex].style.zIndex = "1";  // To move the last tile in front to see time.
+                        // To move the last tile in front to see time.
+                        tiles[emptyTileIndex].style.zIndex = "1";
 
                         // Re-apply the full background image.
                         if (puzzleSize === 3) {
-                            puzzleContainer.style.backgroundImage = "url('Tiger-300x300.jpg')";
+                            puzzleContainer.style.backgroundImage
+                                = "url('Tiger-300x300.jpg')";
                         } else if (puzzleSize === 4) {
-                            puzzleContainer.style.backgroundImage = "url('coast-400x400.png')";
+                            puzzleContainer.style.backgroundImage
+                                = "url('coast-400x400.png')";
                         } else if (puzzleSize === 5) {
-                            puzzleContainer.style.backgroundImage = "url('elephant-500x500.jpg')";
+                            puzzleContainer.style.backgroundImage
+                                = "url('elephant-500x500.jpg')";
                         } else {
                             // for illegal puzzleSizeAsk values.
-                            puzzleContainer.style.backgroundImage = "url('secretsauce.jpg')";
+                            puzzleContainer.style.backgroundImage
+                                = "url('secretsauce.jpg')";
                         }
 
-                        document.getElementById("playAgain").textContent = "Play again?"
-                        reShuffleButton.disabled = true;  // Have to reload the game to shuffle again.
+                        document.getElementById("playAgain").textContent
+                            = "Play again?";
+                        // Have to reload the game to shuffle again.
+                        reShuffleButton.disabled = true;
                         fastReShuffleButton.disabled = true;
 
                         // Display winScreen div.
-                        document.getElementById("winScreen").style.visibility = "visible";
+                        document.getElementById("winScreen").style.visibility
+                            = "visible";
                     }
                 }, 500);
             }
@@ -175,7 +212,9 @@ function startTimer() {
         } else {
             // Displays minutes and seconds in Xm XXs format.
             timeSpan.textContent = Math.floor(time/60)
-                + "m " + (time % 60). toFixed(1).toString().padStart(2, "0") + "s";
+                + "m " + (time % 60).toFixed(1)
+                                    .toString()
+                                    .padStart(2, "0") + "s";
         }
 
     }, 100)
@@ -240,12 +279,15 @@ function shuffleTiles(isFast) {
         }
 
         // Select a random legal move
-        const move = legalMoves[Math.floor(Math.random() * legalMoves.length)];
+        const move = legalMoves[Math.floor(Math.random()
+            * legalMoves.length)];
         const [moveRow, moveCol] = move;
 
         // Swap the empty tile with the selected tile
-        [puzzle[emptyTileRow][emptyTileCol], puzzle[moveRow][moveCol]]
-            = [puzzle[moveRow][moveCol], puzzle[emptyTileRow][emptyTileCol]];
+        [puzzle[emptyTileRow][emptyTileCol],
+            puzzle[moveRow][moveCol]]
+            = [puzzle[moveRow][moveCol],
+            puzzle[emptyTileRow][emptyTileCol]];
         emptyTileRow = moveRow;
         emptyTileCol = moveCol;
 
@@ -261,12 +303,13 @@ function shuffleTiles(isFast) {
         // Increment shuffle count in this recursive function call.
         shuffleCount++;
 
-        // Without delay.
+        // Without delay animation.
         if (isFast) {
             if (shuffleCount < numShuffles) {
                 shuffle();
             } else {
-                    reShuffleButton.disabled = false; // Can shuffle again.
+                    // Can shuffle again.
+                    reShuffleButton.disabled = false;
                     fastReShuffleButton.disabled = false;
             }
 
@@ -275,10 +318,12 @@ function shuffleTiles(isFast) {
             if (shuffleCount < numShuffles) {
                 setTimeout(shuffle, shuffleDelay);
             } else {
-                // Sets the transition from 0.05s to 0.5s for all tiles again on the last shuffle.
+                // Sets the transition from 0.05s to 0.5s
+                // for all tiles again on the last shuffle.
                 for (let tile of tiles) {
                     tile.style.transition = "left 0.5s, top 0.5s";
-                    reShuffleButton.disabled = false; // Can shuffle again.
+                    // Can shuffle again.
+                    reShuffleButton.disabled = false;
                     fastReShuffleButton.disabled = false;
                 }
                 startTimer();  // Continue Timer.
@@ -289,7 +334,8 @@ function shuffleTiles(isFast) {
 
 // Returns true if the puzzle pieces are back together.
 function isPuzzleSolved() {
-    // Only check if puzzle is solved if animation is not currently playing
+    // Only check if puzzle is solved
+    // if animation is not currently playing
     if (!isAnimating) {
         for (let i = 0; i < tiles.length; i++) {
             const row = Math.floor(i / puzzleSize);
@@ -299,7 +345,9 @@ function isPuzzleSolved() {
             // of a tile and its index to check if they're not the same.
             if ((tiles[i].style.left !== `${col * TILE_SIZE}px`)
                 || (tiles[i].style.top !== `${row * TILE_SIZE}px`)) {
-                    return false;  // If the slider pieces are out-of-order it returns false.
+                    // If the slider pieces are
+                    // out-of-order it returns false.
+                    return false;
             }
         }
         return true;

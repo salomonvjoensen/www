@@ -6,12 +6,14 @@ function init() {
     let mouseClicks = 0;
     let amountOfBalls = document.getElementById("amountOfBalls");
     let ballsLeft = document.getElementById("amountOfBlueBalls");
+    let amountOfClicks = document.getElementById("amountOfClicks");
     let startAmountOfBalls = amountOfBalls.value;
     ballsLeft.innerHTML = amountOfBalls.value;
 
     let speed = document.getElementById("speedOption").value;
     let ballSize = document.getElementById("ballSizeOption").value;
-    let circleWindowPosition = document.getElementById("circle").getBoundingClientRect();
+    let circleWindowPosition
+        = document.getElementById("circle").getBoundingClientRect();
 
     // Get the width and height of the window
     let windowWidth = window.innerWidth;
@@ -44,7 +46,8 @@ function init() {
         // Calculate the time elapsed in seconds.
         let timeElapsed = (new Date().getTime() - startTime) / 1000;
 
-        // Round the time elapsed to two decimal places to display hundredths of a second.
+        // Round the time elapsed to two decimal places
+        // to display hundredths of a second.
         timeElapsed = timeElapsed.toFixed(2);
 
         // Update the timer display.
@@ -64,13 +67,17 @@ function init() {
                 stopTimer();
                 this.classList.add('green');
                 isRunning = false;
-                document.getElementById("quitDiv").style.visibility = "hidden";
+                document.getElementById("quitDiv").style.visibility
+                    = "hidden";
 
                 // fancy-pants innerHTML editing instead of document.writeln.
                 document.getElementById("centerDiv").innerHTML =
                     "<h1 style='z-index: 100'>It took "
-                    + tries + " red balls out of " + startAmountOfBalls + " blue balls, and "
-                    + document.getElementById("timer").innerHTML + "econds.<br />"
+                    + tries + " red balls out of "
+                    + startAmountOfBalls
+                    + " blue balls, and "
+                    + document.getElementById("timer").innerHTML
+                    + "econds.<br />"
                     + "You clicked the screen, at " + speed + " speed.";
                     + mouseClicks + " times.</h1>";
                 this.innerHTML = "You<br/>win!";
@@ -78,8 +85,10 @@ function init() {
                 this.style.width = ballSize*2 + "px";
                 this.style.height = ballSize*2 + "px";
                 this.style.borderRadius = ballSize + "px";
-                this.style.left = parseInt(this.style.left) - (ballSize/2) + "px";
-                this.style.top = parseInt(this.style.top) - (ballSize/2) + "px";
+                this.style.left = parseInt(this.style.left)
+                    - (ballSize/2) + "px";
+                this.style.top = parseInt(this.style.top)
+                    - (ballSize/2) + "px";
 
                 // All the event listeners for the balls are removed.
                 for (let ball of balls) {
@@ -92,7 +101,8 @@ function init() {
                 ballSizeOption.removeEventListener("input", this);
                 document.getElementById("menu").style.visibility = "visible";
 
-                // Adds the play again button, which reloads the page when clicked.
+                // Adds the play again button,
+                // which reloads the page when clicked.
                 let endDiv = document.createElement("div");
                 endDiv.classList.add('endScreenStyle', 'endDiv');
                 endDiv.textContent = "Play again?";
@@ -112,7 +122,8 @@ function init() {
 
             } else {
 
-                // The ball clicked wasn't the green ball, and it is removed after 1.5 seconds.
+                // The ball clicked wasn't the green ball, and it is removed
+                // after 1.5 seconds.
                 if (this.className === 'ball') {
                     this.classList.add('red');
                     this.style.width = "0"
@@ -131,7 +142,7 @@ function init() {
     // Updates the amount of clicks.
     function mouseClickHandler() {
         mouseClicks++;
-        document.getElementById("amountOfClicks").innerHTML = mouseClicks.toString();
+        amountOfClicks.innerHTML = mouseClicks.toString();
     }
 
     // Event handler for updates the amount of clicks on the document.
@@ -219,8 +230,8 @@ function init() {
 
 let ballSizeOption;  // Size of the blue ball.
 
-// Loads the event listener to be able to re-size the preview size of the ball,
-// after page loads.
+// Loads the event listener to be able to re-size the preview size of the
+// ball, after page loads.
 document.addEventListener("DOMContentLoaded", function() {
     ballSizeOption = document.querySelector('#ballSizeOption');
 
