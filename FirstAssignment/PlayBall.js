@@ -4,7 +4,7 @@ function init() {
     let isRunning = true;
     let tries = 0;
     let mouseClicks = 0;
-    let amountOfBalls = document.getElementById("amountOfBalls").value;
+    let amountOfBalls = startAmountOfBalls = document.getElementById("amountOfBalls").value;
     let speed = document.getElementById("speedOption").value;
     let ballSize = document.getElementById("ballSizeOption").value;
     let circleWindowPosition = document.getElementById("circle").getBoundingClientRect();
@@ -69,7 +69,7 @@ function init() {
                 // fancy-pants innerHTML editing instead of document.writeln.
                 document.getElementById("centerDiv").innerHTML =
                     "<h1 style='z-index: 100'>It took "
-                    + tries + " red balls, and "
+                    + tries + " red balls out of " + startAmountOfBalls + " blue balls, and "
                     + document.getElementById("timer").innerHTML + "econds.<br />"
                     + "You clicked the screen "
                     + mouseClicks + " times.</h1>";
