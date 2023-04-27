@@ -78,8 +78,7 @@ function init() {
                     + " blue balls, and "
                     + document.getElementById("timer").innerHTML
                     + "econds.<br />"
-                    + "You clicked the screen, at " + speed + " speed.";
-                    + mouseClicks + " times.</h1>";
+                    + "You clicked the screen " + mouseClicks + " times. at " + speed + " speed.</h1>";
                 this.innerHTML = "You<br/>win!";
                 this.style.setProperty("font-size",ballSize/2 + "px");
                 this.style.width = ballSize*2 + "px";
