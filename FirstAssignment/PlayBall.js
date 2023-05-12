@@ -115,7 +115,7 @@ function init() {
                 returnDiv.classList.add('endScreenStyle', 'returnDiv');
                 returnDiv.textContent = "Return to menu.";
                 returnDiv.addEventListener("click", function() {
-                    location.href="index.html";
+                    window.history.back();
                 });
                 document.getElementById("menu").appendChild(returnDiv);
 
